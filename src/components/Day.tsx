@@ -38,19 +38,23 @@ const styles = (theme: Theme) =>
 			padding: 0
 		},
 		buttonText: {
-			lineHeight: 1.6
+			lineHeight: 1.6,
+			color: 'rgba(46,46,46,1)'
+		},
+		buttonTextDisabled: {
+			color: 'rgba(46,46,46,0.38)'
 		},
 		outlined: {
-			border: `1px solid ${theme.palette.primary.dark}`
+			border: `1px solid #2E2E2E`
 		},
 		filled: {
 			"&:hover": {
-				backgroundColor: theme.palette.primary.dark
+				backgroundColor: '#0085FF'
 			},
-			backgroundColor: theme.palette.primary.dark
+			backgroundColor: '#0085FF'
 		},
 		highlighted: {
-			backgroundColor: theme.palette.action.hover
+			backgroundColor: 'rgba(0,133,255,0.14)'
 		},
 		contrast: {
 			color: theme.palette.primary.contrastText
@@ -80,6 +84,7 @@ const Day: React.FunctionComponent<DayProps> = props => {
 					color={!props.disabled ? "default" : "textSecondary"}
 					className={combine(
 						classes.buttonText,
+						props.disabled ? classes.buttonTextDisabled : "",
 						!props.disabled && props.filled && classes.contrast
 					)}
 					variant="body2">
