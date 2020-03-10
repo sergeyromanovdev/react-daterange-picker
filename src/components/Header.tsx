@@ -8,11 +8,7 @@ import {
 	MenuItem, SvgIcon
 } from "@material-ui/core";
 import React from "react";
-import ChevronLeft from "@material-ui/icons/ChevronLeft";
-import ChevronRight from "@material-ui/icons/ChevronRight";
 import { setMonth, getMonth, setYear, getYear } from "date-fns";
-import {Simulate} from "react-dom/test-utils";
-import select = Simulate.select;
 
 interface HeaderProps extends WithStyles<typeof styles> {
 	date: Date;
@@ -122,7 +118,6 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 					value={getMonth(date)}
 					onChange={handleMonthChange}
 					MenuProps={{ disablePortal: true }}>
-					IconComponent={ArrowIcon}
 					{MONTHS.map((month, idx) => (
 						<MenuItem key={month} value={idx}>
 							{month}
@@ -137,7 +132,6 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 					value={getYear(date)}
 					onChange={handleYearChange}
 					MenuProps={{ disablePortal: true }}>
-					IconComponent={ArrowIcon}
 					{generateYears(date, 30).map(year => (
 						<MenuItem key={year} value={year}>
 							{year}
