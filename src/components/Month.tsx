@@ -93,8 +93,8 @@ const Month: React.FunctionComponent<MonthProps> = props => {
 					direction="row"
 					justify="space-between"
 					className={classes.weekDaysContainer}>
-					{WEEK_DAYS.map(day => (
-						<Typography color="textSecondary" key={day} variant="caption">
+					{WEEK_DAYS.map((day, idx) => (
+						<Typography color="textSecondary" key={day+idx} variant="caption">
 							{day}
 						</Typography>
 					))}

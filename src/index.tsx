@@ -73,6 +73,10 @@ const DateRangePickerImpl: React.FunctionComponent<DateRangePickerProps> = props
 
 	const { startDate, endDate } = dateRange;
 
+	React.useEffect(() => {
+		setDateRangeValidated({ ...initialDateRange });
+	}, [initialDateRange]);
+
 	// handlers
 	const setFirstMonthValidated = (date: Date) => {
 		if (isBefore(date, secondMonth)) {
