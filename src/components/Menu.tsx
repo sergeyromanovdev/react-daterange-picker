@@ -26,7 +26,7 @@ const styles = (theme: Theme) =>
 			textAlign: "center"
 		},
 		divider: {
-			borderLeft: `1px solid #D0DFEF`,
+			borderLeft: `1px solid #d0dfef`,
 			marginBottom: '20px'
 		},
 		pt20: {
@@ -34,9 +34,13 @@ const styles = (theme: Theme) =>
 		},
 		widthFitContent: {
 			position: 'absolute',
-			top: '40px',
+			top: '55px',
 			width: 'fit-content',
-			marginTop: '10px'
+			marginTop: '10px',
+			borderRadius: 6,
+			border: '1px solid #0085FF',
+			boxShadow: '0 3px 20px rgba(100, 125, 147, 0.27)',
+			zIndex: 1
 		}
 	});
 

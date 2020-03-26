@@ -26,7 +26,8 @@ const WEEK_DAYS = ["S", "M", "T", "W", "T", "F", "S"];
 const styles = (theme: Theme) =>
 	createStyles({
 		root: {
-			width: 290
+			width: 290,
+			borderRadius: 6
 		},
 		weekDaysContainer: {
 			marginTop: 10,
@@ -36,8 +37,11 @@ const styles = (theme: Theme) =>
 		daysContainer: {
 			paddingLeft: 15,
 			paddingRight: 15,
-			marginTop: 15,
+			marginTop: 10,
 			marginBottom: 20
+		},
+		weekDays: {
+			color: '#658fb2'
 		}
 	});
 
@@ -94,7 +98,7 @@ const Month: React.FunctionComponent<MonthProps> = props => {
 					justify="space-between"
 					className={classes.weekDaysContainer}>
 					{WEEK_DAYS.map((day, idx) => (
-						<Typography color="textSecondary" key={day+idx} variant="caption">
+						<Typography color="textSecondary" key={day+idx} variant="caption" classes={{ root: classes.weekDays }}>
 							{day}
 						</Typography>
 					))}
