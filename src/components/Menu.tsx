@@ -36,6 +36,7 @@ const styles = (theme: Theme) =>
 			position: 'absolute',
 			top: '55px',
 			width: 'fit-content',
+			minWidth: '100%',
 			marginTop: '10px',
 			borderRadius: 6,
 			border: '1px solid #0085FF',
