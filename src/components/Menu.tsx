@@ -35,13 +35,12 @@ const styles = (theme: Theme) =>
 		widthFitContent: {
 			position: 'absolute',
 			top: '55px',
-			width: 'fit-content',
 			minWidth: '100%',
 			marginTop: '10px',
 			borderRadius: 6,
 			border: '1px solid #0085FF',
 			boxShadow: '0 3px 20px rgba(100, 125, 147, 0.27)',
-			zIndex: 1
+			zIndex: 9
 		}
 	});
 
