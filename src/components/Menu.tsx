@@ -109,6 +109,7 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
 							setValue={setFirstMonth}
 							navState={[true, canNavigateCloser]}
 							marker={MARKERS.FIRST_MONTH}
+							label='From:'
 						/>
 						<div className={classes.divider} />
 						<Month
@@ -117,6 +118,7 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
 							setValue={setSecondMonth}
 							navState={[canNavigateCloser, true]}
 							marker={MARKERS.SECOND_MONTH}
+							label='To:'
 						/>
 					</Grid>
 				</Grid>

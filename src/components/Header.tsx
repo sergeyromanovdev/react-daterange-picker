@@ -17,6 +17,7 @@ interface HeaderProps extends WithStyles<typeof styles> {
 	prevDisabled: boolean;
 	onClickNext: () => void;
 	onClickPrevious: () => void;
+	label: string;
 }
 
 const styles = createStyles({
@@ -33,6 +34,7 @@ const styles = createStyles({
 		border: '1px solid #D0DFEF',
 		borderRadius: 5,
 		padding: '0 10px',
+		margin: '0 5px',
 		color: '#333945',
 		fontSize: '15px',
 		fontWeight: 500,
@@ -54,11 +56,24 @@ const styles = createStyles({
 			}
 		}
 	},
+	selectMenu: {
+		padding: ' 7px 20px 7px 0'
+	},
+	selectMenuYear: {
+		padding: ' 7px 20px 7px 0',
+		lineHeight: '18px'
+	},
 	arrowIcon: {
 		fill: 'none',
 		stroke: '#0085ff',
 		strokeLinecap: 'round',
 		strokeLinejoin: 'round'
+	},
+	labelContainer: {
+		color: '#808F94',
+		fontSize: '16px',
+		fontWeight: 600,
+		fontFamily: "Helvetica Neue",
 	}
 });
 
@@ -91,7 +106,8 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 	nextDisabled,
 	prevDisabled,
 	onClickNext,
-	onClickPrevious
+	onClickPrevious, 
+	label
 }) => {
 	const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setDate(setMonth(date, parseInt(event.target.value)));
@@ -102,21 +118,27 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 	};
 
 	const ArrowIcon = () => (
-		<SvgIcon>
+		<SvgIcon viewBox='0 0 10.663 5.831' style={{ width: '9.25px', height: '4.62', top: 'calc(50% - 2px)', right: 0,
+			position: 'absolute', pointerEvents: 'none'}}>
 				<path id="Path_13143" data-name="Path 13143" className={classes.arrowIcon} d="M2360.908,1120.023l4.625,4.624,4.624-4.624"
 							transform="translate(-2360.201 -1119.316)"/>
 		</SvgIcon>
 	);
 
 	return (
-		<Grid container justify="space-between" alignItems="center">
-			<Grid item className={classes.iconContainer}>
+		<Grid container justify="center" alignItems="center">
+			<Grid item className={classes.labelContainer}>
+				{label}
 			</Grid>
 			<Grid item>
 				<Select
 					className={classes.select}
+					classes={{
+						selectMenu: classes.selectMenu
+					}}
 					value={getMonth(date)}
 					onChange={handleMonthChange}
+					IconComponent={ArrowIcon}
 					MenuProps={{ disablePortal: true }}>
 					{MONTHS.map((month, idx) => (
 						<MenuItem key={month} value={idx}>
@@ -124,13 +146,14 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 						</MenuItem>
 					))}
 				</Select>
-			</Grid>
-
-			<Grid item>
 				<Select
 					className={classes.select}
+					classes={{
+						selectMenu: classes.selectMenuYear
+					}}
 					value={getYear(date)}
 					onChange={handleYearChange}
+					IconComponent={ArrowIcon}
 					MenuProps={{ disablePortal: true }}>
 					{generateYears(date, 30).map(year => (
 						<MenuItem key={year} value={year}>
@@ -140,8 +163,6 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 				</Select>
 
 				{/* <Typography>{format(date, "MMMM YYYY")}</Typography> */}
-			</Grid>
-			<Grid item className={classes.iconContainer}>
 			</Grid>
 		</Grid>
 	);
