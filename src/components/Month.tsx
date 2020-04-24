@@ -62,6 +62,7 @@ interface MonthProps extends WithStyles<typeof styles> {
 		onMonthNavigate: (marker: symbol, action: NavigationAction) => void;
 	};
 	label: string;
+	startYear?: Date;
 }
 
 const Month: React.FunctionComponent<MonthProps> = props => {
@@ -75,7 +76,8 @@ const Month: React.FunctionComponent<MonthProps> = props => {
 		setValue: setDate,
 		minDate,
 		maxDate,
-		label
+		label,
+		startYear
 	} = props;
 
 	const [back, forward] = props.navState;
@@ -92,6 +94,7 @@ const Month: React.FunctionComponent<MonthProps> = props => {
 					}
 					onClickNext={() => handlers.onMonthNavigate(marker, NavigationAction.Next)}
 					label={label}
+					startYear={startYear}
 				/>
 
 				<Grid

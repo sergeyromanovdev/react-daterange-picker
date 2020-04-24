@@ -51,6 +51,7 @@ interface MenuProps extends WithStyles<typeof styles> {
 	maxDate: Date;
 	firstMonth: Date;
 	secondMonth: Date;
+	startYear?: Date;
 	setFirstMonth: Setter<Date>;
 	setSecondMonth: Setter<Date>;
 	setDateRange: Setter<DateRange>;
@@ -75,6 +76,7 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
 		setFirstMonth,
 		secondMonth,
 		setSecondMonth,
+		startYear,
 		setDateRange,
 		helpers,
 		handlers
@@ -110,6 +112,7 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
 							navState={[true, canNavigateCloser]}
 							marker={MARKERS.FIRST_MONTH}
 							label='From:'
+							startYear={startYear}
 						/>
 						<div className={classes.divider} />
 						<Month
@@ -119,6 +122,7 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
 							navState={[canNavigateCloser, true]}
 							marker={MARKERS.SECOND_MONTH}
 							label='To:'
+							startYear={startYear}
 						/>
 					</Grid>
 				</Grid>

@@ -18,6 +18,7 @@ interface HeaderProps extends WithStyles<typeof styles> {
 	onClickNext: () => void;
 	onClickPrevious: () => void;
 	label: string;
+	startYear?: Date;
 }
 
 const styles = createStyles({
@@ -92,11 +93,14 @@ const MONTHS = [
 	"December"
 ];
 
-const generateYears = (relativeTo: Date, count: number) => {
-	const half = Math.floor(count / 2);
-	return Array(count)
+const generateYears = (relativeTo: Date, count: number, startYear: any) => {
+	let yearsBack = Math.floor(count / 2);
+	if(startYear) {
+		yearsBack = relativeTo.getFullYear() - startYear.getFullYear();
+	}
+	return Array(yearsBack + 1)
 		.fill(0)
-		.map((y, i) => relativeTo.getFullYear() - half + i); // TODO: make part of the state
+		.map((y, i) => relativeTo.getFullYear() - yearsBack + i); // TODO: make part of the state
 };
 
 const Header: React.FunctionComponent<HeaderProps> = ({
@@ -107,7 +111,8 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 	prevDisabled,
 	onClickNext,
 	onClickPrevious, 
-	label
+	label,
+	startYear
 }) => {
 	const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setDate(setMonth(date, parseInt(event.target.value)));
@@ -155,7 +160,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 					onChange={handleYearChange}
 					IconComponent={ArrowIcon}
 					MenuProps={{ disablePortal: true }}>
-					{generateYears(date, 30).map(year => (
+					{generateYears(new Date(), 10, startYear).map(year => (
 						<MenuItem key={year} value={year}>
 							{year}
 						</MenuItem>
